@@ -1,4 +1,6 @@
-# Reactのチュートリアルをやった
+# react_practice
+
+**Reactのチュートリアルをやった**
 
 Reactの環境をDockerを使用して構築し，[Reactのチュートリアル](https://ja.reactjs.org/tutorial/tutorial.html#setup-option-2-local-development-environment)を行った
 
