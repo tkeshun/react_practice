@@ -1,0 +1,51 @@
+- Dockerfile
+
+Docker上で動作させるコンテナの構成情報を記述したファイル
+
+コンテナのベースイメージ, コンテナ内の作業ディレクトリを書く
+
+```
+FROM node:lts-alpine3.13
+WORKDIR /code
+```
+
+- docker-compose.yml
+
+複数のコンテナを管理するためのツール
+docker-compose.ymlファイルにコンテナの情報を記述する
+
+
+```
+version: '3' #記述の仕方のversion
+services:  #サービス情報
+   node:     #サービス名
+     build:
+       context: .
+       dockerfile: Dockerfile
+     volumes:
+      - ./:/code
+     command: sh -c "cd react-sample && yarn start" #コンテナ内で実行されるコマンド
+     ports:  #ポートの指定 <Host IP>:<Host Port>:<Container Port>
+      - "3000:3000"
+```
+
+- コンテナのビルド
+```
+docker-compose build
+```
+
+- create-react-appとReactのインストール
+
+```
+docker-compose run --rm node sh -c "npm install -g create-react-app && create-react-app react-sample"
+```
+
+- コンテナの起動とReactの実行
+
+最新のイメージを使ったコンテナを起動する
+
+```
+docker-compose up --build
+```
+
+docker-compose.ymlを実行する
